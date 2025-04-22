@@ -27,6 +27,8 @@ class HandCombination:
         if self.is_royal_straight_flush(sorted_hand):
             print("ロイヤルストレートフラッシュ！！！！！")
             return 10, sorted_hand[4].number, sorted_hand[4].suit
+            # return {strength: 10, number_rank: sorted_hand[4].number, suit: sorted_hand[4].suit}辞書
+            # return HandResult(10, sorted_hand[4].number, sorted_hand[4].suit)タプル
         elif self.is_straight_flush(sorted_hand):
             print("ストレートフラッシュ！！！！")
             return 9, sorted_hand[4].number, sorted_hand[4].suit
@@ -62,7 +64,7 @@ class HandCombination:
         for rank, count in counts.items():
             if count == 2:
                 return rank
-    
+
     def not_pair_place(self, sorted_hand) -> list:
         counts = {}
         solo_cards = []
@@ -71,9 +73,6 @@ class HandCombination:
         for i, card in enumerate(sorted_hand):
             if counts[card.number] == 1:
                 solo_cards.append(i)
-        # for rank, count in counts.items():
-        #     if count == 1:
-        #         solo_cards.append(sorted_hand.number.index(rank))
         return solo_cards
 
     def strongest_suit(self, sorted_hand):
@@ -95,8 +94,7 @@ class HandCombination:
 
     def is_straight_flush(self, sorted_hand: list[Card]):
         return (
-            self.is_straight(sorted_hand) is True
-            and self.is_flush(sorted_hand) is True
+            self.is_straight(sorted_hand) is True and self.is_flush(sorted_hand) is True
         )
 
     def is_four_card(self, sorted_hand: list[Card]):
@@ -104,8 +102,7 @@ class HandCombination:
 
     def is_full_house(self, sorted_hand: list[Card]) -> bool:
         return (
-            self.count_pair(sorted_hand) == 3
-            and self.three_or_four(sorted_hand) == 1
+            self.count_pair(sorted_hand) == 3 and self.three_or_four(sorted_hand) == 1
         )
 
     def is_flush(self, sorted_hand: list[Card]):
@@ -133,8 +130,7 @@ class HandCombination:
 
     def is_two_pair(self, sorted_hand: list[Card]):
         return (
-            self.count_pair(sorted_hand) == 2
-            and self.three_or_four(sorted_hand) == 0
+            self.count_pair(sorted_hand) == 2 and self.three_or_four(sorted_hand) == 0
         )
 
     def is_one_pair(self, sorted_hand: list[Card]):

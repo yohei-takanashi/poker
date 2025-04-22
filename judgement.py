@@ -7,14 +7,14 @@ class Judgement:
     def __init__(self):
         self.player = Player()
         self.computer = Computer()
+        self.hc = HandCombination()
 
     def show_winner(self):
+        print("\n勝敗判定!!!")
+        print("プレイヤーの役:", end=" ")
         player_strength, player_rank, player_suit = self.player.hand_strength()
+        print("コンピュータの役:", end=" ")
         computer_strength, computer_rank, computer_suit = self.computer.hand_strength()
-
-        print("\n勝敗判定")
-        print("プレイヤーの役:", player_strength)
-        print("コンピュータの役:", computer_strength)
 
         if player_strength > computer_strength:
             print("プレイヤーの勝ち！")
@@ -25,8 +25,8 @@ class Judgement:
             self.same_strength(player_rank, computer_rank, player_suit, computer_suit)
 
     def same_strength(self, player_rank, computer_rank, player_suit, computer_suit):
-        print("プレイヤーの役のランク:", player_rank)
-        print("コンピュータの役のランク:", computer_rank)
+        print("プレイヤーの役の数字:", player_rank)
+        print("コンピュータの役の数字:", computer_rank)
 
         if player_rank > computer_rank:
             print("プレイヤーの勝ち！（数字の強さで判定）")
@@ -51,8 +51,8 @@ class Judgement:
         player_suit_score = self.suit_score(player_suit)
         computer_suit_score = self.suit_score(computer_suit)
 
-        print("プレイヤーのスーツ:", player_suit)
-        print("コンピュータのスーツ:", computer_suit)
+        print("プレイヤーの絵柄:", player_suit)
+        print("コンピュータの絵柄:", computer_suit)
 
         if player_suit_score > computer_suit_score:
             print("プレイヤーの勝ち！（絵柄の強さで判定）")

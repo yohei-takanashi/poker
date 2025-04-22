@@ -53,17 +53,18 @@ class Player:
 class Computer(Player):
     def change_card(self):
         self.hand = HandCombination.sort_hand(self.hand)
-        print(f"{[i + 1 for i in self.hc.not_pair_place(self.hand)]}番目の数字を交換")
-        for i in range(5):
-            if len(self.hc.not_pair_place(self.hand)) == 0:
-                # print("Computerは交換しない")
-                break
-            else:
-                self.hand.pop(self.hc.not_pair_place(self.hand)[0])
-        for i in range(5 - len(self.hand)):
-            self.draw_card()
-        self.display()
-
+        if self.hc.is_flush == True or self.hc.is_straight == True:
+            print("Computerは交換しない")
+        else:
+            print(f"{[i + 1 for i in self.hc.not_pair_place(self.hand)]}番目の数字を交換")
+            for i in range(5):
+                if len(self.hc.not_pair_place(self.hand)) == 0:
+                    break
+                else:
+                    self.hand.pop(self.hc.not_pair_place(self.hand)[0])
+            for i in range(5 - len(self.hand)):
+                self.draw_card()
+            self.display()
 
     def hand_strength(self):
         sorted_hand = HandCombination.sort_hand(self.hand)
